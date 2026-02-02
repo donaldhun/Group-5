@@ -2,7 +2,8 @@ import numpy as np
 from RabinLazarte_CollectFiles import dictfiles
 import matplotlib.pyplot as plt
 from datetime import datetime
-
+import matplotlib.cm as cm
+    
 all_dates = {
     datetime.fromisoformat(t["date"].replace("Z"," +00:00"))
     for touches in dictfiles.values()
