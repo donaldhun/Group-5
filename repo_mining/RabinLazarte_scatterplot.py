@@ -40,5 +40,9 @@ plt.title("File touches per week")
 
 for i, a in enumerate(uniqueAuthors):
     plt.scatter([], [], color=cmap(i), label=a)
+
+for author, color in authorColor.items():
+    plt.scatter([], [], color=color, label=author)
+    
 plt.tight_layout()
 plt.show()
