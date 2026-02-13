@@ -24,3 +24,14 @@ def counter_exists(name):
 def list_all_counters():
     #lists all the counters
     return jsonify(COUNTERS), status.HTTP_200_OK
+
+# Write code to make test pass - Brian
+@app.route('/counters/<name>', methods=['GET'])
+def read_counter(name):
+    """Read a counter"""
+    # Check if the counter exists in our dictionary
+    if name in COUNTERS:
+        return jsonify({name: COUNTERS[name]}), status.HTTP_200_OK
+    
+    # If not found, return 404
+    return jsonify({"error": f"Counter {name} does not exist"}), status.HTTP_404_NOT_FOUND

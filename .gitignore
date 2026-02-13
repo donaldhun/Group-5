@@ -1,2 +1,5 @@
 # Ignore venv virtual machine - Brian
 lab_2_vm/
+
+# Ignore phase 2 virtual machien - Brian
+Phase2venv/

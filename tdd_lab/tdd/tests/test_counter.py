@@ -29,6 +29,19 @@ class TestCounterEndpoints:
         result = client.post('/counters/foo')
         assert result.status_code == status.HTTP_201_CREATED
 
+    # Write Failing Test - Brian
+    def test_read_counter(self, client):
+        """It should read a counter"""
+        # 1. Create a counter first (so we have something to read)
+        client.post('/counters/foo')
+        
+        # 2. Read the counter
+        result = client.get('/counters/foo')
+        
+        # 3. Assert valid return
+        assert result.status_code == status.HTTP_200_OK
+        assert result.get_json() == {"foo": 0}
+
 @pytest.mark.usefixtures("client")
 def test_list_all_counters(client):
     #test to list all of the counters
