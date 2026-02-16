@@ -43,3 +43,16 @@ def counter_not_found(name):
     # Counter doesnt exists, so generate a 404 error
     return jsonify({"error": f"Counter {name} doesn't exist"}), status.HTTP_404_NOT_FOUND
 
+# Increment a counter - Donald Hunter
+@app.route('/counters/<name>', methods=['PUT'])
+def increment_counter(name):
+    """Update/Increment a counter"""
+    # Check if the counter exists
+    # refactor: use existing helper function
+    if not counter_exists(name):
+        return counter_not_found(name)
+    
+    # Increment the counter
+    COUNTERS[name] += 1
+
+    return jsonify({name: COUNTERS[name]}), status.HTTP_200_OK

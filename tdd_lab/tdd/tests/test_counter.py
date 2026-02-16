@@ -59,6 +59,33 @@ class TestCounterEndpoints:
         # 3. Assert valid return
         assert result.status_code == status.HTTP_200_OK
         assert result.get_json() == {"foo": 0}
+    
+    # Increment a counter - Donald Hunter
+    def test_increment_a_counter(self,client):
+        """It should increment a counter"""
+
+        # LOCAL IMPORT to keep my changes inside this function and
+        # avoid  name conflicts (foo)
+        from src.counter import COUNTERS
+        COUNTERS.clear() 
+        
+        # Create a counter
+        client.post('/counters/foo')
+
+        # Check the initial value is 0
+        initial_res = client.get('/counters/foo')
+        assert initial_res.get_json()['foo'] == 0
+
+        # Increment the counter
+        result = client.put('/counters/foo')
+        assert result.status_code == status.HTTP_200_OK
+
+        # Confirm counter is at 1
+        assert result.get_json()['foo'] == 1
+
+        # Reset to avoid name conflicts
+        COUNTERS.clear()
+
 
 @pytest.mark.usefixtures("client")
 def test_list_all_counters(client):
