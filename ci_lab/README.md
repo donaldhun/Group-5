@@ -1,3 +1,4 @@
+![Build Status](https://github.com/donaldhun/Group-5/actions/workflows/workflow.yml/badge.svg)
 # **📌 Continuous Integration (CI) Lab**
 Welcome to the **CI Lab**! In this lab, you will extend your work from the Testing Lab by setting up a **Continuous Integration (CI) pipeline** using **GitHub Actions**. This pipeline will automatically run tests and enforce code quality whenever changes are pushed to the repository.
 
