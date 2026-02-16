@@ -29,6 +29,18 @@ class TestCounterEndpoints:
         result = client.post('/counters/foo')
         assert result.status_code == status.HTTP_201_CREATED
 
+    # Generate 404 Error for non-existent counter - Ernesto Lara
+    def test_non_existent_counter(self, client):
+        # Create a counter
+        client.post('/counters/foo')
+
+        # Get counter
+        result = client.get('/counters/notfoo')
+
+        # Assert error 404
+        assert result.status_code == status.HTTP_404_NOT_FOUND
+
+
     # Prevent duplicate counters - Tszchoi Siu
     def test_prevent_duplicate_counters(self, client):
         # Try to create the same counter again
