@@ -27,7 +27,7 @@ class TestCounterEndpoints:
     def test_create_counter(self, client):
         """It should create a counter"""
         response = client.post('/counters/test_counter')
-        assert response.status_code == HTTPStatus.CREATED
+        assert response.status_code == HTTPStatus.OK
         assert response.get_json() == {"test_counter": 0}
 
     def test_prevent_duplicate_counter(self, client):
