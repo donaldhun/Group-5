@@ -180,7 +180,8 @@ class TestCounterEndpoints:
         assert response_zero.status_code == HTTPStatus.OK  
         assert response_negative.status_code == HTTPStatus.BAD_REQUEST  
         
-        # TODO: Add an assertion to verify the response message contains a clear error
+        # TODO: Add an assertion to verify the response message contains a clear error (Donald Hunter)
+        assert "error" in response_negative.get_json() 
 
     # ===========================
     # Test: Reset a single counter
