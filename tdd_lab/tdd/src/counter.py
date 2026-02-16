@@ -34,4 +34,12 @@ def read_counter(name):
         return jsonify({name: COUNTERS[name]}), status.HTTP_200_OK
     
     # If not found, return 404
-    return jsonify({"error": f"Counter {name} does not exist"}), status.HTTP_404_NOT_FOUND
+    return counter_not_found(name)
+
+
+# RETURN 404 for non-exixtent counter - Ernesto
+@app.route('/counters/<name>', methods=['GET'])
+def counter_not_found(name):
+    # Counter doesnt exists, so generate a 404 error
+    return jsonify({"error": f"Counter {name} doesn't exist"}), status.HTTP_404_NOT_FOUND
+
